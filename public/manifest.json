@@ -1,8 +1,22 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "E-Commerce Site",
+  "name": "A trial application of e-commerce site",
   "icons": [
-    
+    {
+      "src": "favicon.ico",
+      "type": "image/ico",
+      "sizes": "16x16 32x32 64x64"
+    },
+    {
+      "src":"cart192.png",
+      "sizes":"192x192",
+      "type":"image/png"
+    },
+    {
+      "src":"cart512.png",
+      "sizes":"512x512",
+      "type":"image/png"
+    }
   ],
   "start_url": ".",
   "display": "standalone",

@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import Public from './views/PublicPage';
 import Login from './views/LoginPage';
 import Protected from './views/ProtectedPage';
+import { DATA } from './data';
 
 const fakeAuth = {
   isAuthenticated: false,
@@ -16,6 +17,8 @@ const fakeAuth = {
     setTimeout(cb, 100) // fake async
   }
 }
+
+// console.log(DATA);
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
