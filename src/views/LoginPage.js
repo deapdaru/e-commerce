@@ -1,15 +1,10 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import LoginNavBar from '../components/layout/LoginNavBar';
+import LoginCard from '../components/layout/LoginCard';
 
 function Login(props) {
     const [redirectToReferrer, setRedirectToReferrer] = React.useState(false);
-    // console.log(redirectToReferrer);
-
-    const login = () => {
-        props.fakeAuth.authenticate(() => {
-            setRedirectToReferrer(true);
-        })
-    }
 
     if (redirectToReferrer) {
         return (
@@ -19,7 +14,8 @@ function Login(props) {
 
     return (
         <div>
-            <button onClick={login}>Login</button>
+            <LoginNavBar />
+            <LoginCard setRedirectToReferrer={setRedirectToReferrer} authenticate={props.authenticate} />
         </div>
     )
 }

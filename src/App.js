@@ -6,6 +6,7 @@ import Login from './views/LoginPage';
 import Protected from './views/ProtectedPage';
 import { DATA } from './data';
 
+/* Old Auth
 const fakeAuth = {
   isAuthenticated: false,
   authenticate(cb) {
@@ -17,12 +18,21 @@ const fakeAuth = {
     setTimeout(cb, 100) // fake async
   }
 }
+*/
 
-// console.log(DATA);
+const authenticate = (cb) => {
+  sessionStorage.setItem("isAuthenticated", true);
+  setTimeout(cb, 100) // fake async
+}
+
+const signout = (cb) => {
+  sessionStorage.setItem("isAuthenticated", false);
+  setTimeout(cb, 100) // fake async
+}
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
-    fakeAuth.isAuthenticated === true
+    sessionStorage.isAuthenticated === 'true'
       ? <Component {...props} />
       : <Redirect to='/login' />
   )} />
@@ -33,7 +43,7 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/" component={Public} />
-        <Route path="/login" component={(props) => <Login {...props} fakeAuth={fakeAuth} />} />
+        <Route path="/login" component={(props) => <Login {...props} authenticate={authenticate} />} />
         <PrivateRoute path="/protected" component={Protected} />
       </Switch>
     </Router>
