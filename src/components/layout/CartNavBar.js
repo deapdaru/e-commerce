@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-function ShopNavBar(props) {
+function CartNavBar(props) {
     const classes = useStyles();
 
     const linkStyle = {
@@ -27,9 +27,9 @@ function ShopNavBar(props) {
                         eCommerce
                     </Typography>
                     <Typography variant="h4" className={classes.title}>
-                        Products
+                        My Cart
                     </Typography>
-                    <Link href="/cart" style={linkStyle}><Button variant="text" size="large" color="inherit" endIcon={<ShoppingCart/>}>Cart</Button></Link>
+                    <Link href="/shop" style={linkStyle}><Button variant="text" size="large" color="inherit" endIcon={<ShoppingCart/>}>Shop</Button></Link>
                     <Link href="/" style={linkStyle}><Button variant="text" size="large" color="inherit" endIcon={<AccountCircle/>} onClick={props.logout}>Logout</Button></Link>
                 </Toolbar>
             </AppBar>
@@ -38,4 +38,4 @@ function ShopNavBar(props) {
     )
 }
 
-export default ShopNavBar;
+export default CartNavBar;

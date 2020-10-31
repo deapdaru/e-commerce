@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import ShopNavBar from '../components/layout/ShopNavBar';
 import ProductsList from '../components/layout/ProductsList';
 

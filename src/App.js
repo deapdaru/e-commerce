@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import Public from './views/PublicPage';
 import Login from './views/LoginPage';
 import Shop from './views/ShopPage';
+import Cart from './views/CartPage';
 import { DATA } from './data';
 
 export const ProductsContext = createContext();
@@ -23,25 +24,26 @@ const fakeAuth = {
 */
 
 const authenticate = (cb) => {
-  sessionStorage.setItem("isAuthenticated", true);
+  localStorage.setItem("isAuthenticated", true);
   setTimeout(cb, 100) // fake async
 }
 
 const logout = (cb) => {
-  sessionStorage.setItem("isAuthenticated", false);
+  localStorage.setItem("isAuthenticated", false);
   setTimeout(cb, 100) // fake async
 }
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
-    sessionStorage.isAuthenticated === 'true'
+    localStorage.isAuthenticated === 'true'
       ? <Component {...props} />
       : <Redirect to='/login' />
   )} />
 )
 
 function App() {
-  const [ cartItems, setCartItems ] = useState([]);
+  const [ cartItems, setCartItems ] = useState({});
+  console.log(cartItems);
   return (
     <Router>
       <Switch>
@@ -49,6 +51,7 @@ function App() {
         <Route path="/login" component={(props) => <Login {...props} authenticate={authenticate} />} />
         <ProductsContext.Provider value={{DATA, cartItems, setCartItems}}>
           <PrivateRoute path="/shop" component={(props) => <Shop {...props} logout={logout} />} />
+          <PrivateRoute path="/cart" component={(props) => <Cart {...props} logout={logout} />} />
         </ProductsContext.Provider>
       </Switch>
     </Router>
