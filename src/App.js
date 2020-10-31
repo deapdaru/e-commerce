@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { createContext, useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import Public from './views/PublicPage';
 import Login from './views/LoginPage';
-import Protected from './views/ProtectedPage';
+import Shop from './views/ShopPage';
 import { DATA } from './data';
+
+export const ProductsContext = createContext();
 
 /* Old Auth
 const fakeAuth = {
@@ -25,7 +27,7 @@ const authenticate = (cb) => {
   setTimeout(cb, 100) // fake async
 }
 
-const signout = (cb) => {
+const logout = (cb) => {
   sessionStorage.setItem("isAuthenticated", false);
   setTimeout(cb, 100) // fake async
 }
@@ -39,12 +41,15 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 )
 
 function App() {
+  const [ cartItems, setCartItems ] = useState([]);
   return (
     <Router>
       <Switch>
         <Route exact path="/" component={Public} />
         <Route path="/login" component={(props) => <Login {...props} authenticate={authenticate} />} />
-        <PrivateRoute path="/protected" component={Protected} />
+        <ProductsContext.Provider value={{DATA, cartItems, setCartItems}}>
+          <PrivateRoute path="/shop" component={(props) => <Shop {...props} logout={logout} />} />
+        </ProductsContext.Provider>
       </Switch>
     </Router>
   );

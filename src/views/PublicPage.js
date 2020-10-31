@@ -5,12 +5,12 @@ import Footer from '../components/layout/Footer';
 
 function Public() {
     return (
-        <div>
+        <React.Fragment>
             <PublicNavBar />
             <Header />
             <div style={{paddingTop: "500px"}}></div>
             <Footer />
-        </div>
+        </React.Fragment>
     )
 }
 

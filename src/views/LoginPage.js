@@ -8,15 +8,15 @@ function Login(props) {
 
     if (redirectToReferrer) {
         return (
-            <Redirect to="/protected" />
+            <Redirect to="/shop" />
         )
     }
 
     return (
-        <div>
+        <React.Fragment>
             <LoginNavBar />
             <LoginCard setRedirectToReferrer={setRedirectToReferrer} authenticate={props.authenticate} />
-        </div>
+        </React.Fragment>
     )
 }
 
