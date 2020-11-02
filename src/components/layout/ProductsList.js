@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { ProductsContext } from '../../App';
+import { ProductsContext } from '../ProductsContext';
 import { ButtonGroup, Button, Card, CardActions, CardContent, CardHeader, CardMedia, Typography, Hidden, useMediaQuery } from '@material-ui/core';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     root: {
         padding: "20px",
         margin: "20px",
@@ -40,22 +40,22 @@ const useStyles = makeStyles((theme) => ({
 function ProductsList() {
     const theme = useTheme();
     const query = useMediaQuery(theme.breakpoints.down("sm"));
-
     const classes = useStyles();
+    
     const data = useContext(ProductsContext);
     const products = data.DATA.products;
     const cartItems = data.cartItems;
     console.log(cartItems);
 
     const addProductToCart = (id) => () => {
-        data.setCartItems({...cartItems, [id]: 1})
+        data.addCartItems({...cartItems, [id]: 1})
     }
 
     const cartItemCountIncrement = (key, id) => () => {
         if (key) {
-            data.setCartItems({...cartItems, [id]: cartItems[id] + 1});
+            data.addCartItems({...cartItems, [id]: cartItems[id] + 1});
         } else {
-            data.setCartItems({...cartItems, [id]: cartItems[id] - 1});
+            data.addCartItems({...cartItems, [id]: cartItems[id] - 1});
         }
     }
 

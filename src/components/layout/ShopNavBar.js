@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { theme } from '../theme/theme';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Typography, Button, Link } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
 import { AccountCircle, ShoppingCart } from '@material-ui/icons';
 
 const useStyles = makeStyles(() => ({
@@ -29,8 +30,8 @@ function ShopNavBar(props) {
                     <Typography variant="h4" className={classes.title}>
                         Products
                     </Typography>
-                    <Link href="/cart" style={linkStyle}><Button variant="text" size="large" color="inherit" endIcon={<ShoppingCart/>}>Cart</Button></Link>
-                    <Link href="/" style={linkStyle}><Button variant="text" size="large" color="inherit" endIcon={<AccountCircle/>} onClick={props.logout}>Logout</Button></Link>
+                    <Link to="/cart" style={linkStyle}><Button variant="text" size="large" color="inherit" endIcon={<ShoppingCart/>}>Cart</Button></Link>
+                    <Link to="/" style={linkStyle}><Button variant="text" size="large" color="inherit" endIcon={<AccountCircle/>} onClick={props.logout}>Logout</Button></Link>
                 </Toolbar>
             </AppBar>
             <Toolbar />

@@ -17,7 +17,7 @@ function LoginCard(props) {
     const classes = useStyles();
     const login = () => {
         props.authenticate(() => {
-            props.setRedirectToReferrer(true);
+            props.setRedirectToReferrer(localStorage.getItem("isAuthenticated"));
         })
     }
 

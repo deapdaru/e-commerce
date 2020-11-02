@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 // import { Card } from '@material-ui/core';
-import { ProductsContext } from '../../App'
+import { ProductsContext } from '../ProductsContext';
 
 function CartList() {
     const data = useContext(ProductsContext);
